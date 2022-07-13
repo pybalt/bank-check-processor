@@ -9,7 +9,7 @@
 # caja_de_ahorro_en_pesos= True
 # caja_de_ahorro_en_dolares= True
 # Esto es para realizar polimorfismo.
-# --> Si las clientes contienen caja de ahorro en dolares == True
+# --> Si los clientes contienen caja de ahorro en dolares == True
 # ----> Podran realizar operaciones relacionadas con dicha caja.
 # ----> Si no es el caso, intentar utilizar esas operaciones arrojara un error (intencional).
 
@@ -47,6 +47,21 @@ class Cliente(Direccion):
         self.apellido = apellido
         self.numeroCliente = numeroCliente
         self.dni = dni
+    tarjeta_de_credito=None #Sera un bool. Si es False no puede crear tarjetas de credito
+    limite_tarjetas_de_credito=None #Si es un bool no puede crear una tarjeta de credito, si es un num entonces ese es el limite
+    tarjeta_de_debito=None #Sera un bool. Si es False no puede crear tarjetas de debito
+    limite_tarjetas_de_debito=None #Si es un bool no puede crear una tarjeta de debito, si es un num entonces ese es el limite
+    chequeras=None #Sera un bool. Si es False no puede tener chequeras
+    maximo_chequeras=None #Si es un bool no puede crear tarjetas. Si es un numero, ese es el limite
+    maximo_retiro_diario=None #Es un numero, va a ser utilizado como limite a retirar diariamente POR CAJERO
+    comision_transferencias=None #Es un escalar entre 1 y 0.99
+    maximo_valor_transferencia=None #Es un int. Es el maximo valor que se puede transferir sin solicitar permiso
+    cuenta_corriente=None #Al crearse un cliente classic, gold o black, pasa a ser true. Es en pesos.
+    cuenta_corriente_descubierto=None #Seria el saldo negativo que puede llegar a tener una cuenta. Si es un bool (false), no puede tener saldo negativo
+    caja_de_ahorro_en_dolares=None #Es un bool. Si es False, no puede acceder a las funciones o metodos relacionados con los dolares.
+    caja_de_ahorro_en_pesos=None #Es un bool. Si es False, no puede acceder a las funciones o metodos relacionados con los pesos.
+    
+
 
 class ClienteClassic(Cliente):
     def __init__(self, 
@@ -68,22 +83,19 @@ class ClienteClassic(Cliente):
                         apellido, 
                         numeroCliente, 
                         dni)
+    tarjeta_de_credito=False
+    limite_tarjetas_de_credito=False
+    tarjeta_de_debito=True
     limite_tarjetas_de_debito=1
-    '☑️Solamente una tarjeta de debito'
-    '''👆Se crea con el cliente'''
-    caja_de_ahorro_pesos=True
-    '☑️Solo tiene una caja de ahorro en pesos creada cuando se dio de alta el cliente'
-    caja_de_ahorro_dolares=False
-    '👆Como no tiene cuenta en dolares NO PUEDE comprar y vender dolares'#!Falta implementar
-    maximo_retiro_diario=10000
-    '👆Solo puede retirar hasta un maximo de $10.000 diarios por cajero.'#!Falta implementar
-    tarjeta_credito=False
     chequeras=False
-    '👆No tienen acceso a tarjetas de credito ni chequeras'#!Falta implementar
-    comision_transferencias=0.01
-    '👆La comision por transferencias hechas es de 1%'#!Falta implementar
+    maximo_chequeras=False
+    maximo_retiro_diario=10000
+    comision_transferencias=0.99 #Valor transferencia * comision(0.99) = Transferencia - 1%
     maximo_valor_transferencia=150000
-    '👆No puede recibir transferencias mayores a $150.000 sin previo aviso'#!Falta implementar
+    cuenta_corriente=True
+    cuenta_corriente_descubierto=False
+    caja_de_ahorro_en_dolares=False
+    caja_de_ahorro_en_pesos=True
     pass
 
 class ClienteGold(Cliente):
@@ -106,29 +118,19 @@ class ClienteGold(Cliente):
                         apellido,
                         numeroCliente,
                         dni)
-    limite_tarjetas_de_debito=1
-    '☑️Solamente una tarjeta de debito'
-    '''👆Se crea con el cliente'''
-    cuenta_corriente=True
-    cuenta_corriente_descubierto=10000
-    'Tiene una cuenta corriente con un descubierto de $10.000.'
-    '''👆Tener presente que como tiene cuenta corriente,
-                 el saldo podria
-    ser negativo y hasta -$10.000 si tiene cupo diario para la operacion
-    que se quiera realizar'''
-    caja_de_ahorro_dolares=True
-    'Tiene una caja de ahorro en dolares'
-    '''👆Puede comprar en dolares'''
     tarjeta_credito=True
     limite_tarjetas_de_credito=1
-    'Puede tener solo una tarjeta de credito'
-    maximo_retiro_diario=20000
-    'Las extracciones de efectivo tienen un maximo de $20.000 por dia'
+    tarjeta_de_debito=True
+    limite_tarjetas_de_debito=1
     chequeras=True
-    'Pueden tener chequera'
-    comision_transferencias=0.005
-    'La comision por transferencias hechas es de 0.5%'
-    'No puede recibir transferencias mayores a $500.000 sin previo aviso'
+    maximo_chequeras=1
+    maximo_retiro_diario=20000
+    comision_transferencias=0.995 #Valor transferencia * comision(0.995) = Transferencia - 0.5%
+    cuenta_corriente=True
+    cuenta_corriente_descubierto=10000
+    maximo_valor_transferencia=500000
+    caja_de_ahorro_dolares=True
+    caja_de_ahorro_en_pesos=False
     pass
 
 class ClienteBlack(Cliente):
@@ -151,15 +153,17 @@ class ClienteBlack(Cliente):
                         apellido,
                         numeroCliente,
                         dni)
+    tarjeta_de_credito=True
     limite_tarjetas_de_credito=5
-    '☑️Pueden tener como maximo 5 tarjetas de credito'
-    'Tienen:'
-    '''👉 Caja de ahorro en pesos'''
-    '''👉 Cuenta corriente en pesos'''
-    '''👉 Caja de ahorro en dolares'''
-    'Pueden tener descubierto en su cuenta corriente de hasta $10.000'
-    'Pueden extraer hasta $100.000 por dia'
-    'Pueden tener hasta dos chequeras'
-    'No se aplican comisiones a las transferencias'
-    'Pueden recibir transferencias por cualquier monto sin previa autorizacion'
+    tarjeta_de_debito=False
+    limite_tarjetas_de_debito=False
+    chequeras=True
+    maximo_chequeras=2
+    maximo_retiro_diario=100000
+    comision_transferencias=1 #Valor transferencia * comision(1) = Transferencia
+    cuenta_corriente=True
+    cuenta_corriente_descubierto=10000
+    maximo_valor_transferencia=False
+    caja_de_ahorro_dolares=True
+    caja_de_ahorro_pesos=True
     pass
