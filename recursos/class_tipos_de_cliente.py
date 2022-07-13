@@ -1,4 +1,3 @@
-from class_parents import Cliente
 
 # Las clases BLACK, GOLD, CLASSIC deben de compartir
 # las mismas variables, pero con distinto valor bool
@@ -14,14 +13,48 @@ from class_parents import Cliente
 # ----> Podran realizar operaciones relacionadas con dicha caja.
 # ----> Si no es el caso, intentar utilizar esas operaciones arrojara un error (intencional).
 
+class Direccion:
+    def __init__(self, 
+                calle: str, 
+                numeroCalle: str, 
+                ciudad: str, 
+                provincia: str, 
+                pais: str):
+        self.calle = calle
+        self.numeroCalle = numeroCalle
+        self.ciudad = ciudad
+        self.provincia = provincia
+        self.pais = pais
+
+
+class Cliente(Direccion):
+    def __init__(self,
+                 calle: str,
+                 numeroCalle: str,
+                 ciudad: str,
+                 provincia: str,
+                 pais: str,
+                 nombre: str,
+                 apellido: str,
+                 numeroCliente: str,
+                 dni: str):
+        super().__init__(calle, 
+                        numeroCalle, 
+                        ciudad, 
+                        provincia, 
+                        pais)
+        self.nombre = nombre
+        self.apellido = apellido
+        self.numeroCliente = numeroCliente
+        self.dni = dni
+
 class ClienteClassic(Cliente):
     def __init__(self, 
                 calle: str, 
                 numeroCalle: str, 
                 ciudad: str, 
                 provincia: str, 
-                pais: str, 
-                perfil: str, 
+                pais: str,
                 nombre: str, 
                 apellido: str, 
                 numeroCliente: str, 
@@ -30,8 +63,7 @@ class ClienteClassic(Cliente):
                         numeroCalle, 
                         ciudad, 
                         provincia, 
-                        pais, 
-                        perfil, 
+                        pais,
                         nombre, 
                         apellido, 
                         numeroCliente, 
@@ -55,13 +87,33 @@ class ClienteClassic(Cliente):
     pass
 
 class ClienteGold(Cliente):
+    def __init__(self,
+                calle: str,
+                numeroCalle: str,
+                ciudad: str,
+                provincia: str,
+                pais: str,
+                nombre: str,
+                apellido: str,
+                numeroCliente: str,
+                dni: str):
+        super().__init__(calle,
+                        numeroCalle,
+                        ciudad,
+                        provincia,
+                        pais,
+                        nombre,
+                        apellido,
+                        numeroCliente,
+                        dni)
     limite_tarjetas_de_debito=1
     '☑️Solamente una tarjeta de debito'
     '''👆Se crea con el cliente'''
     cuenta_corriente=True
     cuenta_corriente_descubierto=10000
     'Tiene una cuenta corriente con un descubierto de $10.000.'
-    '''👆Tener presente que como tiene cuenta corriente, el saldo podria
+    '''👆Tener presente que como tiene cuenta corriente,
+                 el saldo podria
     ser negativo y hasta -$10.000 si tiene cupo diario para la operacion
     que se quiera realizar'''
     caja_de_ahorro_dolares=True
@@ -80,6 +132,25 @@ class ClienteGold(Cliente):
     pass
 
 class ClienteBlack(Cliente):
+    def __init__(self,
+                 calle: str,
+                 numeroCalle: str,
+                 ciudad: str,
+                 provincia: str,
+                 pais: str,
+                 nombre: str,
+                 apellido: str,
+                 numeroCliente: str,
+                 dni: str):
+        super().__init__(calle,
+                        numeroCalle,
+                        ciudad,
+                        provincia,
+                        pais,
+                        nombre,
+                        apellido,
+                        numeroCliente,
+                        dni)
     limite_tarjetas_de_credito=5
     '☑️Pueden tener como maximo 5 tarjetas de credito'
     'Tienen:'
@@ -92,4 +163,3 @@ class ClienteBlack(Cliente):
     'No se aplican comisiones a las transferencias'
     'Pueden recibir transferencias por cualquier monto sin previa autorizacion'
     pass
-
