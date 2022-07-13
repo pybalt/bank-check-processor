@@ -1,0 +1,5 @@
+CLASSIC = 'CLASSIC'
+
+BLACK = 'BLACK'
+
+GOLD = 'GOLD'
