@@ -118,7 +118,7 @@ class ClienteGold(Cliente):
                         apellido,
                         numeroCliente,
                         dni)
-    tarjeta_credito=True
+    tarjeta_de_credito=True
     limite_tarjetas_de_credito=1
     tarjeta_de_debito=True
     limite_tarjetas_de_debito=1
@@ -165,5 +165,5 @@ class ClienteBlack(Cliente):
     cuenta_corriente_descubierto=10000
     maximo_valor_transferencia=False
     caja_de_ahorro_dolares=True
-    caja_de_ahorro_pesos=True
+    caja_de_ahorro_en_pesos=True
     pass
