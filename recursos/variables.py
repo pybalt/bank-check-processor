@@ -4,7 +4,7 @@ BLACK = 'BLACK'
 
 GOLD = 'GOLD'
 
-ENTRADA = {
+ENTRADA = [{
 "numero": 100001,
 "nombre": "Nicolas",
 "apellido": "Gaston",
@@ -139,4 +139,4 @@ ENTRADA = {
 "totalChequerasActualmente" : 2
 }
 ]
-}
+}]
