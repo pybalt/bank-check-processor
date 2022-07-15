@@ -18,7 +18,6 @@
                 "tipoTransaccion": "RETIRO_EFECTIVO_CAJERO_AUTOMATICO",
                 "cuentaNumero": 190,
                 "cupoDiarioRestante": 9000,
-                "cantidadExtraccionesHechas": 1,
                 "montoTransaccion": 1000,
                 "fecha": "06/06/2022 10:00:55",
                 "numeroTransaccion": 1,
