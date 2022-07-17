@@ -1,0 +1,14 @@
+{
+    "numeroCliente": 100001,
+    "nombre": "Nicolas",
+    "apellido": "Gaston",
+    "dni": "29494777",
+    "tipo": "BLACK",
+    "direccion": {
+        "calle": "Rivadavia",
+        "numeroDireccion": "7900",
+        "ciudad": "Capital Federal",
+        "provincia": "Buenos Aires",
+        "pais": "Argentina"
+    }
+    }
