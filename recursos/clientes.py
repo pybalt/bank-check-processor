@@ -96,12 +96,7 @@ class Cliente():
                     self.caja_de_ahorro_en_dolares=False
                     self.caja_de_ahorro_en_pesos=True
                       
-                       
-                    
-                    
-                    
-                    
-                    
+   
                 else:
                         print("usted no es classic, usted es",datos["tipo"])
     
