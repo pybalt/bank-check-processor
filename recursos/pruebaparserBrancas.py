@@ -5,17 +5,27 @@ import json
 class Cliente():
 
 
-    def __init__(self,numeroCliente,nombre,apellido,dni,tipo, direccion):
+    def __init__(self,numeroCliente,nombre,apellido,dni,tipo, direccion, transacciones):
        self.numeroCliente=numeroCliente
        self.nombre=nombre
        self.apellido=apellido
        self.dni=dni 
        self.tipo=tipo
        self.calle= direccion ['calle']
-       self.numeroDireccion= direccion['numeroDireccion']
+       self.numeroCalle= direccion['numeroCalle']
        self.ciudad=direccion['ciudad']
        self.provincia=direccion['provincia']
        self.pais=direccion['pais']
+       self.estado=transacciones['estado']
+       self.tipoTransaccion=transacciones['tipoTransaccion']
+       self.cuentaNumero=transacciones['cuentaNumero']
+       self.cupoDiarioRestante=transacciones['cupoDiarioRestante']
+       self.montoTransaccion=transacciones['montoTransaccion']
+       self.fecha=transacciones['fecha']
+       self.numeroTransaccion=transacciones['numeroTransaccion']
+       self.saldoEnCuenta=transacciones['saldoEnCuenta']
+       self.totalTarjetasDeCreditoActualmente=transacciones['totalTarjetasDeCreditoActualmente']
+       self.totalChequerasActualmente=transacciones['totalChequerasActualmente']
 
 
     @classmethod
@@ -25,18 +35,41 @@ class Cliente():
 
 
     def __repr__(self):
-            return f'<Cliente {self}>'
+            return f'<Cliente {self.tipo}>'
 
 
 
 clientes_list = []
 with open('recursos\data.json', 'r') as json_file:
     clientes_data = json.loads(json_file.read())
-    for i in clientes_data:
-     print (i)
+    datos = clientes_data
+    datos=datos["resultados"]
+    print(datos[1])
+
+    # clientes= datos[0]
+    # transacciones = datos[1]
+
+    # for i in datos[1]:
+    #     if i == "tipoTransaccion":
+    #         print(i)
 
 
-print(clientes_list)
+
+
+
+
+
+  
+
+
+
+
+
+    # for i in clientes_data:
+    #  clientes_list.append(Cliente(**i))
+
+     
+# print(clientes_list)
 
 
 
