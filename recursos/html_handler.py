@@ -13,14 +13,13 @@ def handler(name:str, objCliente:object, listTransacciones:list, nroReporte):
 <!-- Todos los estilos se han aplicado en linea para evitar cualquier tipo de error al generar el reporte por parte de un mal uso del usuario  -->
 <body style="background-color:#FFC300;">
     <section style="display: flex; justify-content: center;">
-        <div style="width: 620px; height: 500px; background-color: white; border-radius: 5%;box-shadow: 3px 3px 50px 3px rgb(167, 136, 0);">
-            <table style="border-collapse: separate;border-spacing: 10px 5px;position: relative; margin: auto; top: 8%;">
+        <div style="width: 800px; height: 3500; background-color: white; border-radius:100px; box-shadow: 3px 3px 50px 3px rgb(167, 136, 0);">
+            <table style="border-collapse: separate; padding: 100px; padding-left:50px; padding-right:50px">
                 <tr style="vertical-align: top;height:40px;">
-                  <td colspan="2"><strong>Reporte N° {nroReporte}</strong></td>
-                  <td ></td>
+                  <td colspan="2"><strong>Reporte Nro: {nroReporte}</strong></td>
+                  <td></td>
                   <td><strong>22/07/2022</strong></td>
                 </tr>
-
                 <tr>
                     <td>{objCliente.nombre}</td>
                     <td>{objCliente.apellido}</td>
@@ -43,10 +42,8 @@ def handler(name:str, objCliente:object, listTransacciones:list, nroReporte):
                     <td style="text-align: right;"><strong>Tipo:</strong></td>
                     <td><strong>{transaccion.tipoTransaccion}</strong></td>
                   </tr>
-
-
                   <tr>
-                    <td>N° Cuenta</td>
+                    <td>Nro Cuenta</td>
                     <td colspan="2">{transaccion.cuentaNumero}</td>
                     <td >Estado: Activa</td>
                 </tr>
@@ -62,7 +59,7 @@ def handler(name:str, objCliente:object, listTransacciones:list, nroReporte):
                 <tr>
                     <td>Saldo en Cuenta:</td>
                     <td >{transaccion.saldoEnCuenta}</td>
-                    <td >Fecha de la Operación:</td>
+                    <td >Fecha de la Operacion:</td>
                     <td>{transaccion.fecha}
                     </td>
                 </tr>
@@ -88,7 +85,7 @@ def handler(name:str, objCliente:object, listTransacciones:list, nroReporte):
                 <tr>
                     <td>Descubierto:</td>
                     <td>{objCliente.cuenta_corriente_descubierto}</td>
-                    <td>Comisión:</td>
+                    <td>Comision:</td>
                     <td>{100 - objCliente.comision_transferencias*100}%</td>
                 </tr>
 
@@ -110,7 +107,7 @@ def handler(name:str, objCliente:object, listTransacciones:list, nroReporte):
 """
         contentHTML = contentHTML+texto
     textoFinal = """
-                </table>
+            </table>
         </div>
     </section>
 </body>
