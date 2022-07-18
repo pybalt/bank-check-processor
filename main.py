@@ -11,8 +11,26 @@ Entonces, el usuario solamente hara lo siguiente:
         a. El(los) HTML debe de tener estilo en linea, para evitar crear un CSS aparte para cada html.
         b. Preferentemente, el estilo del HTMl no debe depender de tener conexion a internet.
 """
+from recursos.parser import *
+from recursos.submodulos.class_transaccion import Transaccion
+from recursos.submodulos.class_razones import Razon
+from recursos.html_handler import handler
+from recursos.txt_handler import log
+path = r'resume.json'
+[CLIENTE, NROREPORTE] = parser(path)
+transacciones = list()
+for transaccion in CLIENTE.transacciones:
+        transaccion = Transaccion(transaccion)
+        if transaccion.estado == 'RECHAZADA':
+                transaccion.razon = Razon(CLIENTE, transaccion)
+        else:
+                transaccion.razon = "CUMPLE LOS REQUISITOS\n"
+        transacciones.append(transaccion)
 
-if '__main__' == '__name__':
+TRANSACCIONES = transacciones
+del transacciones
+
+if __name__ == '__main__':
         #* Del paquete recursos, importar todo
         #* Algoritmo 👇.
         #! Llama al JSON
@@ -28,3 +46,14 @@ if '__main__' == '__name__':
         #! Se crea una variable con un string de formato HTML(con estilo incluido)
         #! Se crea un archivo de tipo .html que contiene la variable mencionada arriba
         #! Se cierra el programa
+
+        for transaccion in TRANSACCIONES:
+                print(transaccion)
+                if transaccion.estado == 'RECHAZADA':   
+                        print(f"TRANSACCION {transaccion.estado}")
+                        print(f'{transaccion.razon}')
+                else:
+                        print(f"TRANSACCION {transaccion.estado}")
+                        print(f'{transaccion.razon}')
+        handler(f'CLIENTE_NRO{CLIENTE.numeroCliente}', CLIENTE, TRANSACCIONES, NROREPORTE)
+        log(NROREPORTE, CLIENTE, TRANSACCIONES)
