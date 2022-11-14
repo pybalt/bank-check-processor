@@ -6,14 +6,22 @@ Six comisison, third group: Smart Cookies.
 
 ## How do you use it?
 
-### First step: Clone the repo.
+### First step: 
+
+- Clone the repo
 
 ```
 git clone https://github.com/pybalt/ITBA_Sprint5.git
 ```
 
-### Second step: Put the JSON in the same directory as the `main.py` file.
+### Second step
 
-### Third step: Run the `main.py` file
+- Put the JSON in the same directory as the `main.py` file.
 
-### Fourth step: Easy as that. Enjoy!
+### Third step
+
+- Run the `main.py` file
+
+### Fourth step
+
+- Easy as that. Enjoy!
