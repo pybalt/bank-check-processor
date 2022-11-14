@@ -1,14 +1,19 @@
-# ITBA_Sprint5
+# Shell creck processor
 
-Trabajo final del Sprint 5 del modulo back-end.
+Final project of sprint 5, Technological Institute of Buenos Aires
 
-Comision 6, grupo 3. Smart Cookies
+Six comisison, third group: Smart Cookies.
 
-Como usar el script:
+## How do you use it?
 
+### First step: Clone the repo.
 
-Paso 1: Coloque el JSON en el mismo directorio que el archivo 'main.py'
+```
+git clone https://github.com/pybalt/ITBA_Sprint5.git
+```
 
-Paso 2: Ejecute el archivo 'main.py'
+### Second step: Put the JSON in the same directory as the `main.py` file.
 
-Paso 3: Disfrute.
+### Third step: Run the `main.py` file
+
+### Fourth step: Easy as that. Enjoy!
